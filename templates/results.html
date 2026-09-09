@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Scan Results | NetSecure
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        <span>NetSecure</span>
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/">
+            New Scan
+        </a>
+
+        <a href="/nmap-commands">
+            Nmap Commands
+        </a>
+
+        <a href="/history">
+            Scan History
+        </a>
+
+        <a href="/reports">
+            Reports
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="container">
+
+
+{% if results and results.get("error") %}
+
+
+<!-- =====================================================
+     ERROR
+====================================================== -->
+
+<section class="hero">
+
+    <p class="tag">
+        SCAN ERROR
+    </p>
+
+    <h1>
+        Scan Failed
+    </h1>
+
+    <p class="description">
+        {{ results["error"] }}
+    </p>
+
+</section>
+
+
+<section class="scan-card">
+
+    <h2>
+        ⚠️ Nmap Error
+    </h2>
+
+    <p>
+        {{ results["error"] }}
+    </p>
+
+    <br>
+
+    <a
+        href="/"
+        class="scan-button"
+    >
+        ← Start New Scan
+    </a>
+
+</section>
+
+
+{% else %}
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="hero">
+
+    <p class="tag">
+        NMAP SCAN COMPLETED
+    </p>
+
+    <h1>
+        {{ results.get("scan_name", "Scan Results") }}
+    </h1>
+
+    <p class="description">
+
+        Target:
+
+        <strong>
+            {{ target }}
+        </strong>
+
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     BASIC SCAN INFORMATION
+====================================================== -->
+
+<section class="stats">
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🎯
+        </div>
+
+        <h3>
+            Target
+        </h3>
+
+        <p>
+            {{ target }}
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            📡
+        </div>
+
+        <h3>
+            Host Status
+        </h3>
+
+        <p>
+
+            {% if results.get("host_state") == "up" %}
+
+                UP
+
+            {% elif results.get("host_state") == "down" %}
+
+                DOWN
+
+            {% else %}
+
+                {{ results.get(
+                    "host_state",
+                    "Unknown"
+                ) | upper }}
+
+            {% endif %}
+
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🔓
+        </div>
+
+        <h3>
+            Open Ports
+        </h3>
+
+        <p>
+
+            {{
+                results.get("ports", [])
+                | selectattr("state", "equalto", "open")
+                | list
+                | length
+            }}
+
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     SECURITY RISK ASSESSMENT
+====================================================== -->
+
+{% if results.get("security") %}
+
+<section class="scan-card risk-assessment">
+
+
+    <!-- HEADER -->
+
+    <div class="risk-header">
+
+        <h2>
+            🛡️ Security Risk Assessment
+        </h2>
+
+        <p>
+            NetSecure analyzed the services discovered during
+            this Nmap scan and generated an automated
+            security assessment.
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         RISK STATISTICS
+    ================================================== -->
+
+    <div class="risk-stats">
+
+
+        <!-- SECURITY SCORE -->
+
+        <div class="risk-stat">
+
+            <div class="risk-stat-icon">
+                📊
+            </div>
+
+            <h3>
+                Security Score
+            </h3>
+
+            <strong>
+                {{ results["security"].get(
+                    "score",
+                    0
+                ) }}/100
+            </strong>
+
+        </div>
+
+
+        <!-- RISK LEVEL -->
+
+        <div class="risk-stat">
+
+            <div class="risk-stat-icon">
+                ⚠️
+            </div>
+
+            <h3>
+                Risk Level
+            </h3>
+
+            <strong>
+                {{ results["security"].get(
+                    "risk_level",
+                    "UNKNOWN"
+                ) }}
+            </strong>
+
+        </div>
+
+
+        <!-- FINDINGS -->
+
+        <div class="risk-stat">
+
+            <div class="risk-stat-icon">
+                🔎
+            </div>
+
+            <h3>
+                Findings
+            </h3>
+
+            <strong>
+                {{ results["security"].get(
+                    "total_findings",
+                    0
+                ) }}
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         SEVERITY BREAKDOWN
+    ================================================== -->
+
+    <div class="severity-section">
+
+        <h3>
+            Severity Breakdown
+        </h3>
+
+
+        <div class="severity-grid">
+
+
+            <div class="severity-card critical">
+
+                <span class="severity-icon">
+                    🔴
+                </span>
+
+                <div>
+
+                    <strong>
+                        {{ results["security"].get(
+                            "critical",
+                            0
+                        ) }}
+                    </strong>
+
+                    <span>
+                        Critical
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="severity-card high">
+
+                <span class="severity-icon">
+                    🟠
+                </span>
+
+                <div>
+
+                    <strong>
+                        {{ results["security"].get(
+                            "high",
+                            0
+                        ) }}
+                    </strong>
+
+                    <span>
+                        High
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="severity-card medium">
+
+                <span class="severity-icon">
+                    🟡
+                </span>
+
+                <div>
+
+                    <strong>
+                        {{ results["security"].get(
+                            "medium",
+                            0
+                        ) }}
+                    </strong>
+
+                    <span>
+                        Medium
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="severity-card low">
+
+                <span class="severity-icon">
+                    🟢
+                </span>
+
+                <div>
+
+                    <strong>
+                        {{ results["security"].get(
+                            "low",
+                            0
+                        ) }}
+                    </strong>
+
+                    <span>
+                        Low
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         RISK SUMMARY
+    ================================================== -->
+
+    <div class="risk-summary">
+
+        <h3>
+            📋 Risk Summary
+        </h3>
+
+        <p>
+            {{ results["security"].get(
+                "summary",
+                "No security summary available."
+            ) }}
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         SECURITY FINDINGS
+    ================================================== -->
+
+    {% if results["security"].get("findings") %}
+
+    <div class="security-findings">
+
+        <h3>
+            🔎 Security Findings
+        </h3>
+
+
+        {% for finding in results["security"]["findings"] %}
+
+
+        <div class="finding-card">
+
+
+            <!-- FINDING HEADER -->
+
+            <div class="finding-header">
+
+                <div>
+
+                    <h4>
+
+                        Port
+                        {{ finding.get(
+                            "port",
+                            "N/A"
+                        ) }}/{{ finding.get(
+                            "protocol",
+                            "tcp"
+                        ) | upper }}
+
+                    </h4>
+
+                    <span class="finding-service">
+
+                        {{ finding.get(
+                            "service",
+                            "Unknown Service"
+                        ) }}
+
+                    </span>
+
+                </div>
+
+
+                <span
+                    class="severity-badge severity-{{
+                        finding.get(
+                            'severity',
+                            'LOW'
+                        ) | lower
+                    }}"
+                >
+
+                    {{ finding.get(
+                        "severity",
+                        "LOW"
+                    ) }}
+
+                </span>
+
+            </div>
+
+
+            <!-- SERVICE INFORMATION -->
+
+            <div class="finding-info">
+
+
+                <div>
+
+                    <strong>
+                        Product
+                    </strong>
+
+                    <span>
+                        {{ finding.get(
+                            "product",
+                            "Unknown"
+                        ) }}
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Version
+                    </strong>
+
+                    <span>
+                        {{ finding.get(
+                            "version",
+                            "Unknown"
+                        ) }}
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Risk Points
+                    </strong>
+
+                    <span>
+                        {{ finding.get(
+                            "risk_points",
+                            0
+                        ) }}
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- WHY IT MATTERS -->
+
+            <div class="finding-description">
+
+                <h5>
+                    ⚠️ Why this matters
+                </h5>
+
+                <p>
+                    {{ finding.get(
+                        "reason",
+                        "No additional information available."
+                    ) }}
+                </p>
+
+            </div>
+
+
+            <!-- RECOMMENDATION -->
+
+            <div class="finding-recommendation">
+
+                <h5>
+                    🔧 Recommended Fix
+                </h5>
+
+                <p>
+                    {{ finding.get(
+                        "recommendation",
+                        "Review and restrict this service where appropriate."
+                    ) }}
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        {% endfor %}
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- NO FINDINGS -->
+
+    <div class="no-findings">
+
+        <h3>
+            ✅ No Security Findings
+        </h3>
+
+        <p>
+            No significant exposed services were identified
+            by the current risk analysis.
+        </p>
+
+    </div>
+
+
+    {% endif %}
+
+
+</section>
+
+{% endif %}
+
+
+<!-- =====================================================
+     HOST INFORMATION
+====================================================== -->
+
+<section class="scan-card">
+
+    <h2>
+        🌐 Host Information
+    </h2>
+
+
+    {% if results.get("addresses") %}
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Address
+                    </th>
+
+                    <th>
+                        Type
+                    </th>
+
+                    <th>
+                        Vendor
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for address in results["addresses"] %}
+
+                <tr>
+
+                    <td>
+                        {{ address["address"] }}
+                    </td>
+
+                    <td>
+                        {{ address["type"] }}
+                    </td>
+
+                    <td>
+                        {{ address["vendor"] or "N/A" }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% endif %}
+
+
+    {% if results.get("hostnames") %}
+
+    <p>
+
+        <strong>
+            Hostname:
+        </strong>
+
+        {{ results["hostnames"] | join(", ") }}
+
+    </p>
+
+    {% endif %}
+
+
+</section>
+
+
+<!-- =====================================================
+     PING SCAN INFORMATION
+====================================================== -->
+
+{% if results.get("scan_type") == "ping" %}
+
+<section class="scan-card">
+
+    <h2>
+        📶 Host Discovery
+    </h2>
+
+
+    <div class="report-details">
+
+
+        <div class="report-item">
+
+            <strong>
+                Host Status
+            </strong>
+
+            <span>
+                {{ results.get(
+                    "host_state",
+                    "Unknown"
+                ) | upper }}
+            </span>
+
+        </div>
+
+
+        {% if results.get("addresses") %}
+
+        <div class="report-item">
+
+            <strong>
+                IP Address
+            </strong>
+
+            <span>
+                {{ results["addresses"][0]["address"] }}
+            </span>
+
+        </div>
+
+        {% endif %}
+
+
+        {% if results.get("hostnames") %}
+
+        <div class="report-item">
+
+            <strong>
+                Hostname
+            </strong>
+
+            <span>
+                {{ results["hostnames"] | join(", ") }}
+            </span>
+
+        </div>
+
+        {% endif %}
+
+
+    </div>
+
+
+    <p>
+
+        Ping Scan uses Nmap host discovery and does not
+        perform a traditional port scan.
+
+    </p>
+
+</section>
+
+{% endif %}
+
+
+<!-- =====================================================
+     PORT RESULTS
+====================================================== -->
+
+{% if results.get("ports") %}
+
+<section class="scan-card">
+
+    <h2>
+
+        {% if results.get("scan_type") == "udp" %}
+
+            📡 UDP Port Results
+
+        {% elif results.get("scan_type") == "full_tcp" %}
+
+            🔓 Full TCP Port Results
+
+        {% elif results.get("scan_type") == "fast" %}
+
+            ⚡ Fast Scan Results
+
+        {% elif results.get("scan_type") == "syn" %}
+
+            🥷 SYN Scan Results
+
+        {% elif results.get("scan_type") == "tcp_connect" %}
+
+            🔌 TCP Connect Results
+
+        {% elif results.get("scan_type") == "version" %}
+
+            🔎 Version Detection Results
+
+        {% elif results.get("scan_type") == "service" %}
+
+            ⚙️ Service Discovery Results
+
+        {% elif results.get("scan_type") == "aggressive" %}
+
+            🚀 Aggressive Scan Results
+
+        {% elif results.get("scan_type") == "os" %}
+
+            💻 OS Detection Port Results
+
+        {% else %}
+
+            🔍 Port Results
+
+        {% endif %}
+
+    </h2>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Port
+                    </th>
+
+                    <th>
+                        Protocol
+                    </th>
+
+                    <th>
+                        State
+                    </th>
+
+                    <th>
+                        Service
+                    </th>
+
+                    <th>
+                        Product
+                    </th>
+
+                    <th>
+                        Version
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for port in results["ports"] %}
+
+                <tr>
+
+                    <td>
+                        <strong>
+                            {{ port.get(
+                                "port",
+                                "N/A"
+                            ) }}
+                        </strong>
+                    </td>
+
+
+                    <td>
+                        {{ port.get(
+                            "protocol",
+                            "N/A"
+                        ) | upper }}
+                    </td>
+
+
+                    <td>
+
+                        {% if port.get("state") == "open" %}
+
+                            <span class="status">
+                                OPEN
+                            </span>
+
+                        {% elif port.get("state") == "closed" %}
+
+                            CLOSED
+
+                        {% elif port.get("state") == "filtered" %}
+
+                            FILTERED
+
+                        {% else %}
+
+                            {{ port.get(
+                                "state",
+                                "unknown"
+                            ) | upper }}
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <td>
+                        {{ port.get(
+                            "service",
+                            "unknown"
+                        ) }}
+                    </td>
+
+
+                    <td>
+                        {{ port.get(
+                            "product",
+                            ""
+                        ) or "N/A" }}
+                    </td>
+
+
+                    <td>
+                        {{ port.get(
+                            "version",
+                            "unknown"
+                        ) }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =====================================================
+     OS DETECTION
+====================================================== -->
+
+{% if results.get("os") or results.get("os_classes") %}
+
+<section class="scan-card">
+
+    <h2>
+        💻 Operating System Detection
+    </h2>
+
+
+    {% if results.get("os") %}
+
+    <h3>
+        Detected Operating Systems
+    </h3>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Operating System
+                    </th>
+
+                    <th>
+                        Accuracy
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for os in results["os"] %}
+
+                <tr>
+
+                    <td>
+                        {{ os["name"] }}
+                    </td>
+
+                    <td>
+                        {{ os["accuracy"] }}%
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% endif %}
+
+
+    {% if results.get("os_classes") %}
+
+    <h3>
+        OS Details
+    </h3>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Device Type
+                    </th>
+
+                    <th>
+                        Vendor
+                    </th>
+
+                    <th>
+                        Family
+                    </th>
+
+                    <th>
+                        Generation
+                    </th>
+
+                    <th>
+                        Accuracy
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for osclass in results["os_classes"] %}
+
+                <tr>
+
+                    <td>
+                        {{ osclass["type"] }}
+                    </td>
+
+                    <td>
+                        {{ osclass["vendor"] }}
+                    </td>
+
+                    <td>
+                        {{ osclass["family"] }}
+                    </td>
+
+                    <td>
+                        {{ osclass["generation"] }}
+                    </td>
+
+                    <td>
+                        {{ osclass["accuracy"] }}%
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% endif %}
+
+
+    <div class="report-details">
+
+
+        <div class="report-item">
+
+            <strong>
+                Running OS
+            </strong>
+
+            <span>
+                {{ results.get(
+                    "running_os",
+                    "Unknown"
+                ) }}
+            </span>
+
+        </div>
+
+
+        <div class="report-item">
+
+            <strong>
+                Device Type
+            </strong>
+
+            <span>
+                {{ results.get(
+                    "device_type",
+                    "Unknown"
+                ) }}
+            </span>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =====================================================
+     NSE SCRIPT RESULTS
+====================================================== -->
+
+{% if results.get("scripts") %}
+
+<section class="scan-card">
+
+    <h2>
+        🧪 NSE Script Results
+    </h2>
+
+
+    {% for script in results["scripts"] %}
+
+    <div class="script-result">
+
+        <h3>
+            {{ script["id"] }}
+        </h3>
+
+        <pre>
+{{ script["output"] }}
+        </pre>
+
+    </div>
+
+    {% endfor %}
+
+</section>
+
+{% endif %}
+
+
+<!-- =====================================================
+     PORT SCRIPT RESULTS
+====================================================== -->
+
+{% set has_port_scripts = false %}
+
+
+{% for port in results.get("ports", []) %}
+
+    {% if port.get("scripts") %}
+
+        {% set has_port_scripts = true %}
+
+    {% endif %}
+
+{% endfor %}
+
+
+{% if has_port_scripts %}
+
+<section class="scan-card">
+
+    <h2>
+        🔬 Port Script Results
+    </h2>
+
+
+    {% for port in results["ports"] %}
+
+        {% if port.get("scripts") %}
+
+        <h3>
+            Port
+            {{ port["port"] }}/{{ port["protocol"] }}
+        </h3>
+
+
+        {% for script in port["scripts"] %}
+
+        <div class="script-result">
+
+            <h4>
+                {{ script["id"] }}
+            </h4>
+
+            <pre>
+{{ script["output"] }}
+            </pre>
+
+        </div>
+
+        {% endfor %}
+
+        {% endif %}
+
+    {% endfor %}
+
+</section>
+
+{% endif %}
+
+
+<!-- =====================================================
+     TRACEROUTE
+====================================================== -->
+
+{% if results.get("traceroute") %}
+
+<section class="scan-card">
+
+    <h2>
+        🗺️ Traceroute
+    </h2>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Hop
+                    </th>
+
+                    <th>
+                        IP Address
+                    </th>
+
+                    <th>
+                        Hostname
+                    </th>
+
+                    <th>
+                        RTT
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for hop in results["traceroute"] %}
+
+                <tr>
+
+                    <td>
+                        {{ hop["ttl"] }}
+                    </td>
+
+                    <td>
+                        {{ hop["ip"] }}
+                    </td>
+
+                    <td>
+                        {{ hop["hostname"] or "N/A" }}
+                    </td>
+
+                    <td>
+                        {{ hop["rtt"] or "N/A" }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =====================================================
+     RAW NMAP OUTPUT
+====================================================== -->
+
+<section class="scan-card">
+
+    <h2>
+        🖥️ Raw Nmap Output
+    </h2>
+
+
+    <p class="card-description">
+
+        This is the original terminal-style output
+        generated by Nmap for this scan.
+
+    </p>
+
+
+    <pre class="nmap-output">{{ results.get(
+    "raw_output",
+    "No raw output available."
+) }}</pre>
+
+</section>
+
+
+<!-- =====================================================
+     ACTION BUTTONS
+====================================================== -->
+
+<section class="scan-card">
+
+    <a
+        href="/"
+        class="scan-button"
+    >
+        ← New Scan
+    </a>
+
+
+    <a
+        href="/history"
+        class="scan-button"
+    >
+        📋 Scan History
+    </a>
+
+
+    <a
+        href="/reports"
+        class="scan-button"
+    >
+        📄 Reports
+    </a>
+
+</section>
+
+
+{% endif %}
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <p>
+        NetSecure • Network Security Assessment Tool
+    </p>
+
+    <p>
+        Use only on systems you own
+        or have permission to test.
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Nmap Commands | NetSecure
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='css/style.css'
+        ) }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+====================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <span>
+            NetSecure
+        </span>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/">
+            New Scan
+        </a>
+
+        <a href="/history">
+            Scan History
+        </a>
+
+        <a href="/nmap-commands">
+            Nmap Commands
+        </a>
+
+        <a href="/reports">
+            Reports
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="container">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <p class="tag">
+            NMAP REFERENCE
+        </p>
+
+
+        <h1>
+            Nmap Scan Commands
+        </h1>
+
+
+        <p class="description">
+
+            Learn about the Nmap scanning techniques
+            implemented in NetSecure and understand
+            what each scan is designed to discover.
+
+        </p>
+
+    </section>
+
+
+    <!-- =================================================
+         COMMAND 1
+    ================================================== -->
+
+    <section class="command-card">
+
+        <div class="command-number">
+            01
+        </div>
+
+
+        <h2>
+            TCP Connect Scan
+        </h2>
+
+
+        <div class="command-code">
+
+            nmap -sT &lt;target&gt;
+
+        </div>
+
+
+        <p>
+
+            Performs a full TCP connection using the
+            operating system's networking stack. It is
+            useful when raw packet privileges are not
+            available.
+
+        </p>
+
+
+        <div class="command-details">
+
+            <strong>
+                Option:
+            </strong>
+
+            <code>
+                -sT
+            </code>
+
+            <strong>
+                Detects:
+            </strong>
+
+            Open and closed TCP ports
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COMMAND 2
+    ================================================== -->
+
+    <section class="command-card">
+
+        <div class="command-number">
+            02
+        </div>
+
+
+        <h2>
+            SYN (Stealth) Scan
+        </h2>
+
+
+        <div class="command-code">
+
+            nmap -sS &lt;target&gt;
+
+        </div>
+
+
+        <p>
+
+            Sends TCP SYN packets to identify open ports
+            without completing the full TCP handshake.
+            It is one of Nmap's commonly used TCP scanning
+            techniques.
+
+        </p>
+
+
+        <div class="command-details">
+
+            <strong>
+                Option:
+            </strong>
+
+            <code>
+                -sS
+            </code>
+
+            <strong>
+                Detects:
+            </strong>
+
+            Open TCP ports
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COMMAND 3
+    ================================================== -->
+
+    <section class="command-card">
+
+        <div class="command-number">
+            03
+        </div>
+
+
+        <h2>
+            UDP Scan
+        </h2>
+
+
+        <div class="command-code">
+
+            nmap -sU &lt;target&gt;
+
+        </div>
+
+
+        <p>
+
+            Scans UDP ports to identify services that
+            communicate using UDP, such as DNS, SNMP,
+            and DHCP.
+
+        </p>
+
+
+        <div class="command-details">
+
+            <strong>
+                Option:
+            </strong>
+
+            <code>
+                -sU
+            </code>
+
+            <strong>
+                Detects:
+            </strong>
+
+            Open and open|filtered UDP ports
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COMMAND 4
+    ================================================== -->
+
+    <section class="command-card">
+
+        <div class="command-number">
+            04
+        </div>
+
+
+        <h2>
+            Ping Scan
+        </h2>
+
+
+        <div class="command-code">
+
+            nmap -sn &lt;target&gt;
+
+        </div>
+
+
+        <p>
+
+            Performs host discovery without performing
+            a traditional port scan. It determines whether
+            the target host is responding.
+
+        </p>
+
+
+        <div class="command-details">
+
+            <strong>
+                Option:
+            </strong>
+
+            <code>
+                -sn
+            </code>
+
+            <strong>
+                Detects:
+            </strong>
+
+            Live or reachable hosts
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COMMAND 5
+    ================================================== -->
+
+    <section class="command-card">
+
+        <div class="command-number">
+            05
+        </div>
+
+
+        <h2>
+            Version Detection
+        </h2>
+
+
+        <div class="command-code">
+
+            nmap -sV &lt;target&gt;
+
+        </div>
+
+
+        <p>
+
+            Probes discovered services to determine
+            the application name and version running
+            on open ports.
+
+        </p>
+
+
+        <div class="command-details">
+
+            <strong>
+                Option:
+            </strong>
+
+            <code>
+                -sV
+            </code>
+
+            <strong>
+                Detects:
+            </strong>
+
+            Services and versions
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COMMAND 6
+    ================================================== -->
+
+    <section class="command-card">
+
+        <div class="command-number">
+            06
+        </div>
+
+
+        <h2>
+            OS Detection
+        </h2>
+
+
+        <div class="command-code">
+
+            nmap -O &lt;target&gt;
+
+        </div>
+
+
+        <p>
+
+            Analyzes network responses and TCP/IP
+            characteristics to attempt to identify
+            the operating system of the target.
+
+        </p>
+
+
+        <div class="command-details">
+
+            <strong>
+                Option:
+            </strong>
+
+            <code>
+                -O
+            </code>
+
+            <strong>
+                Detects:
+            </strong>
+
+            Operating system and OS characteristics
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COMMAND 7
+    ================================================== -->
+
+    <section class="command-card">
+
+        <div class="command-number">
+            07
+        </div>
+
+
+        <h2>
+            Aggressive Scan
+        </h2>
+
+
+        <div class="command-code">
+
+            nmap -A &lt;target&gt;
+
+        </div>
+
+
+        <p>
+
+            Enables several advanced detection features
+            together, including operating system detection,
+            version detection, default NSE scripts, and
+            traceroute.
+
+        </p>
+
+
+        <div class="command-details">
+
+            <strong>
+                Option:
+            </strong>
+
+            <code>
+                -A
+            </code>
+
+            <strong>
+                Detects:
+            </strong>
+
+            OS, services, versions, scripts and routes
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COMMAND 8
+    ================================================== -->
+
+    <section class="command-card">
+
+        <div class="command-number">
+            08
+        </div>
+
+
+        <h2>
+            Service Discovery
+        </h2>
+
+
+        <div class="command-code">
+
+            nmap -sV -sC &lt;target&gt;
+
+        </div>
+
+
+        <p>
+
+            Combines service and version detection with
+            Nmap's default NSE scripts to gather additional
+            information about detected services.
+
+        </p>
+
+
+        <div class="command-details">
+
+            <strong>
+                Options:
+            </strong>
+
+            <code>
+                -sV -sC
+            </code>
+
+            <strong>
+                Detects:
+            </strong>
+
+            Services, versions and script information
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COMMAND 9
+    ================================================== -->
+
+    <section class="command-card">
+
+        <div class="command-number">
+            09
+        </div>
+
+
+        <h2>
+            Fast Scan
+        </h2>
+
+
+        <div class="command-code">
+
+            nmap -F &lt;target&gt;
+
+        </div>
+
+
+        <p>
+
+            Performs a faster scan by checking a smaller
+            list of commonly used ports instead of Nmap's
+            larger default port set.
+
+        </p>
+
+
+        <div class="command-details">
+
+            <strong>
+                Option:
+            </strong>
+
+            <code>
+                -F
+            </code>
+
+            <strong>
+                Detects:
+            </strong>
+
+            Commonly used ports
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COMMAND 10
+    ================================================== -->
+
+    <section class="command-card">
+
+        <div class="command-number">
+            10
+        </div>
+
+
+        <h2>
+            Full TCP Port Scan
+        </h2>
+
+
+        <div class="command-code">
+
+            nmap -p- &lt;target&gt;
+
+        </div>
+
+
+        <p>
+
+            Scans the complete TCP port range from
+            port 1 through port 65,535. This provides
+            broader TCP port coverage than a default scan.
+
+        </p>
+
+
+        <div class="command-details">
+
+            <strong>
+                Option:
+            </strong>
+
+            <code>
+                -p-
+            </code>
+
+            <strong>
+                Detects:
+            </strong>
+
+            TCP ports across the full port range
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SECURITY NOTE
+    ================================================== -->
+
+    <section class="scan-card security-note">
+
+        <h2>
+            ⚠️ Responsible Scanning
+        </h2>
+
+        <p>
+
+            Nmap should only be used against systems,
+            networks, and applications that you own or
+            have explicit permission to assess.
+
+        </p>
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <p>
+        NetSecure • Network Security Assessment Tool
+    </p>
+
+    <p>
+        Use only on systems you own
+        or have permission to test.
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

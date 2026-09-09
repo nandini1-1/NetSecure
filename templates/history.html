@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Scan History | NetSecure
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+    
+        <span>
+            NetSecure
+        </span>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/">
+            New Scan
+        </a>
+
+        <a href="/nmap-commands">
+            Nmap Commands
+        </a>
+
+        <a href="/history">
+            Scan History
+        </a>
+
+        <a href="/reports">
+            Reports
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <section class="hero">
+
+        <p class="tag">
+            SCAN RECORDS
+        </p>
+
+        <h1>
+            Scan History
+        </h1>
+
+        <p class="description">
+            View previous network security scans
+            performed by NetSecure.
+        </p>
+
+    </section>
+
+
+    <section class="scan-card">
+
+        <div class="history-header">
+
+            <h2>
+                Previous Scans
+            </h2>
+
+            <span>
+                {{ scans|length }} Scans
+            </span>
+
+        </div>
+
+
+        {% if scans %}
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            Target
+                        </th>
+
+                        <th>
+                            Scan Time
+                        </th>
+
+                        <th>
+                            Open Ports
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Report
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for scan in scans %}
+
+                    <tr>
+
+                        <td>
+                            {{ scan["display_id"] }}
+                        </td>
+
+                        <td>
+                            <strong>
+                                {{ scan["target"] }}
+                            </strong>
+                        </td>
+
+                        <td>
+                            {{ scan["scan_time"] }}
+                        </td>
+
+                        <td>
+                            {{ scan["open_ports"] }}
+                        </td>
+
+                        <td>
+
+                            <span class="status">
+                                {{ scan["status"] }}
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="/reports/{{ scan['id'] }}"
+                                class="report-button"
+                            >
+                                View Report
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <h3>
+                No Scans Found
+            </h3>
+
+            <p>
+                Perform your first Nmap scan to
+                create a scan history.
+            </p>
+
+            <a
+                href="/"
+                class="scan-button"
+            >
+                🔍 Start New Scan
+            </a>
+
+        </div>
+
+        {% endif %}
+
+
+    </section>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        NetSecure • Network Security Assessment Tool
+    </p>
+
+    <p>
+        Use only on systems you own
+        or have permission to test.
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

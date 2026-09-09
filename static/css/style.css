@@ -1,0 +1,2067 @@
+/* =========================================================
+   NETSECURE
+   Forest Green Security UI
+   Clean / Professional / Responsive
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b1408 0%,
+            #10200c 50%,
+            #0b1408 100%
+        );
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 8%;
+
+    background: #16280f;
+
+    border-bottom: 1px solid #254117;
+
+    box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    color: #ffffff;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    text-decoration: none;
+}
+
+
+.logo span:first-child {
+    width: 25px;
+    min-width: 25px;
+
+    height: 25px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+    line-height: 1;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 8px 3px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.nav-links a:hover {
+    color: #8fdb68;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   NAV ICON
+========================================================= */
+
+.nav-icon {
+    width: 20px;
+    min-width: 20px;
+
+    height: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+    line-height: 1;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   GENERAL HERO
+========================================================= */
+
+.hero {
+    text-align: center;
+
+    padding: 65px 20px 35px;
+}
+
+
+.tag {
+    margin-bottom: 14px;
+
+    color: #6faf4a;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+.hero h1 {
+    margin-bottom: 14px;
+
+    color: #ffffff;
+
+    font-size: 42px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+.description {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    color: #d5e2cf;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORM / SCAN CARD
+========================================================= */
+
+.scan-card {
+    width: 100%;
+    max-width: 800px;
+
+    margin: 25px auto 45px;
+
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1c3213,
+            #16280f
+        );
+
+    border: 1px solid #315a20;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+
+.scan-card h2 {
+    margin-bottom: 8px;
+
+    color: #ffffff;
+}
+
+
+.card-description {
+    margin-bottom: 30px;
+
+    color: #c8d8c0;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+.form-group small {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #9fba94;
+
+    font-size: 12px;
+}
+
+
+input,
+select {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    background: #0f1d0b;
+
+    border: 1px solid #3b612b;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+input::placeholder {
+    color: #849a7b;
+}
+
+
+input:focus,
+select:focus {
+    border-color: #6faf4a;
+
+    box-shadow:
+        0 0 0 3px rgba(111, 175, 74, 0.15);
+}
+
+
+select option {
+    background: #16280f;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.scan-button {
+    width: 100%;
+    min-height: 48px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 14px 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #254117,
+            #3d6929
+        );
+
+    border: 1px solid #4d8134;
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.scan-button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #3d6929,
+            #548b38
+        );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+.scan-button:active {
+    transform: translateY(0);
+}
+
+
+.scan-button .icon,
+.button-icon {
+    width: 22px;
+    min-width: 22px;
+
+    height: 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+
+    line-height: 1;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 60px;
+}
+
+
+.stat-card {
+    padding: 25px;
+
+    text-align: center;
+
+    background: #16280f;
+
+    border: 1px solid #315a20;
+
+    border-radius: 12px;
+}
+
+
+.stat-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 12px;
+
+    font-size: 25px;
+}
+
+
+.stat-card h3 {
+    margin-bottom: 10px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+}
+
+
+.stat-card p {
+    color: #8fdb68;
+
+    font-size: 28px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 25px;
+
+    text-align: center;
+
+    background: rgba(11, 20, 8, 0.55);
+
+    border-top: 1px solid #254117;
+
+    color: #9fb294;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   RESULTS CARD
+========================================================= */
+
+.results-card {
+    width: 100%;
+    max-width: 1000px;
+
+    margin: 20px auto 60px;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1c3213,
+            #16280f
+        );
+
+    border: 1px solid #315a20;
+
+    border-radius: 14px;
+}
+
+
+.results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+
+.results-header h2 {
+    color: #ffffff;
+}
+
+
+.target-badge {
+    padding: 8px 12px;
+
+    background: #0f1d0b;
+
+    border: 1px solid #3b612b;
+
+    border-radius: 6px;
+
+    color: #8fdb68;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   SCAN OUTPUT
+========================================================= */
+
+.scan-output {
+    padding: 20px;
+
+    background: #081006;
+
+    border: 1px solid #254117;
+
+    border-radius: 8px;
+
+    color: #dce8d7;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    overflow-x: auto;
+
+    white-space: pre-wrap;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-top: 20px;
+
+    padding: 11px 18px;
+
+    background: #315a20;
+
+    border-radius: 7px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    text-decoration: none;
+
+    transition: background 0.2s ease;
+}
+
+
+.back-button:hover {
+    background: #4a7a32;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-container {
+    width: 100%;
+
+    margin-top: 20px;
+
+    overflow-x: auto;
+}
+
+
+.results-table,
+.table-container table {
+    width: 100%;
+
+    margin-top: 10px;
+
+    border-collapse: collapse;
+}
+
+
+.results-table th,
+.table-container th {
+    padding: 15px;
+
+    text-align: left;
+
+    background: #254117;
+
+    border-bottom: 1px solid #3d6929;
+
+    color: #ffffff;
+
+    font-size: 13px;
+}
+
+
+.results-table td,
+.table-container td {
+    padding: 15px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #315a20;
+
+    color: #ffffff;
+
+    font-size: 14px;
+}
+
+
+.results-table tbody tr:hover {
+    background: rgba(74, 122, 50, 0.15);
+}
+
+
+/* =========================================================
+   TABLE LINKS
+========================================================= */
+
+.results-table td a,
+.table-container td a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    color: #8fdb68;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+}
+
+
+.results-table td a:hover,
+.table-container td a:hover {
+    color: #b9e99b;
+}
+
+
+.results-table td a .icon,
+.table-container td a .icon {
+    width: 22px;
+    min-width: 22px;
+
+    height: 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-open {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 5px 9px;
+
+    background: rgba(111, 175, 74, 0.16);
+
+    border-radius: 5px;
+
+    color: #8fdb68;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.status-closed {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 5px 10px;
+
+    background: rgba(180, 70, 70, 0.15);
+
+    border-radius: 6px;
+
+    color: #ff8585;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TARGET / EMPTY RESULTS
+========================================================= */
+
+.target-value {
+    font-size: 14px !important;
+
+    word-break: break-word;
+}
+
+
+.no-results {
+    padding: 30px;
+
+    text-align: center;
+
+    color: #c2d1bb;
+}
+
+
+/* =========================================================
+   NMAP TERMINAL
+========================================================= */
+
+.nmap-terminal {
+    margin-top: 20px;
+
+    padding: 22px;
+
+    background: #081006;
+
+    border: 1px solid #315a20;
+
+    border-radius: 10px;
+
+    overflow-x: auto;
+}
+
+
+.nmap-terminal pre {
+    margin: 0;
+
+    color: #e6f0e1;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+}
+
+
+/* =========================================================
+   OS RESULT
+========================================================= */
+
+.os-result {
+    margin-top: 15px;
+
+    padding: 20px;
+
+    background: rgba(37, 65, 23, 0.35);
+
+    border: 1px solid #315a20;
+
+    border-radius: 10px;
+}
+
+
+.os-result h3 {
+    margin-top: 0;
+}
+
+
+/* =========================================================
+   BIG STATUS
+========================================================= */
+
+.big-status {
+    margin: 20px 0;
+
+    padding: 25px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+.success {
+    background: rgba(111, 175, 74, 0.12);
+
+    color: #8fdb68;
+}
+
+
+.danger {
+    background: rgba(180, 70, 70, 0.12);
+
+    color: #ff8585;
+}
+
+
+/* =========================================================
+   WARNING
+========================================================= */
+
+.warning-box {
+    margin: 20px 0;
+
+    padding: 18px;
+
+    background: rgba(190, 150, 50, 0.12);
+
+    border: 1px solid rgba(190, 150, 50, 0.3);
+
+    border-radius: 10px;
+
+    color: #f4d77c;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.error-card {
+    border-left: 4px solid #ff5c5c;
+}
+
+
+/* =========================================================
+   SCRIPT RESULTS
+========================================================= */
+
+.script-result {
+    margin-top: 20px;
+
+    padding: 18px;
+
+    background: #081006;
+
+    border: 1px solid #315a20;
+
+    border-radius: 10px;
+}
+
+
+.script-result h3 {
+    margin-top: 0;
+}
+
+
+.script-result pre {
+    color: #dce8d7;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+}
+
+
+/* =========================================================
+   NEW SCAN
+========================================================= */
+
+.new-scan {
+    margin: 35px 0;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   NMAP COMMANDS
+========================================================= */
+
+.command-card {
+    position: relative;
+
+    margin-bottom: 24px;
+
+    padding: 28px;
+
+    background: rgba(37, 65, 23, 0.35);
+
+    border: 1px solid #315a20;
+
+    border-radius: 14px;
+}
+
+
+.command-card h2 {
+    margin: 0 0 16px;
+
+    color: #ffffff;
+}
+
+
+.command-card p {
+    color: #d2dfcd;
+
+    line-height: 1.7;
+}
+
+
+.command-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    padding: 5px 10px;
+
+    background: #254117;
+
+    border-radius: 6px;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+.command-code {
+    margin: 15px 0;
+
+    padding: 16px 18px;
+
+    background: #081006;
+
+    border: 1px solid #315a20;
+
+    border-radius: 8px;
+
+    color: #b9e29e;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 15px;
+
+    overflow-x: auto;
+}
+
+
+.command-details {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 18px;
+    padding-top: 16px;
+
+    border-top: 1px solid #315a20;
+
+    color: #ffffff;
+
+    line-height: 1.7;
+}
+
+
+.command-details code {
+    padding: 3px 7px;
+
+    background: rgba(111, 175, 74, 0.14);
+
+    border-radius: 5px;
+
+    color: #a9db8d;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+}
+
+
+.security-note {
+    margin-top: 35px;
+}
+
+
+/* =========================================================
+   RISK ASSESSMENT
+========================================================= */
+
+.risk-assessment {
+    margin-top: 30px;
+}
+
+
+.risk-header h2 {
+    margin-bottom: 8px;
+
+    color: #ffffff;
+}
+
+
+.risk-header p {
+    margin-bottom: 25px;
+
+    color: #c3d1bc;
+}
+
+
+/* =========================================================
+   RISK STATISTICS
+========================================================= */
+
+.risk-stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 30px;
+}
+
+
+.risk-stat {
+    padding: 20px;
+
+    text-align: center;
+
+    background: #16280f;
+
+    border: 1px solid #315a20;
+
+    border-radius: 10px;
+}
+
+
+.risk-stat-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 10px;
+
+    font-size: 24px;
+}
+
+
+.risk-stat h3 {
+    margin-bottom: 8px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+}
+
+
+.risk-stat strong {
+    display: block;
+
+    color: #8fdb68;
+
+    font-size: 24px;
+}
+
+
+/* =========================================================
+   SEVERITY
+========================================================= */
+
+.severity-section {
+    margin-top: 25px;
+}
+
+
+.severity-section h3 {
+    margin-bottom: 15px;
+}
+
+
+.severity-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+
+.severity-card {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 15px;
+
+    background: #10200c;
+
+    border: 1px solid #315a20;
+
+    border-radius: 8px;
+}
+
+
+.severity-icon {
+    width: 28px;
+    min-width: 28px;
+
+    height: 28px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    flex-shrink: 0;
+}
+
+
+.severity-card strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 20px;
+}
+
+
+.severity-card span:last-child {
+    color: #aec1a4;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RISK SUMMARY
+========================================================= */
+
+.risk-summary {
+    margin-top: 30px;
+
+    padding: 18px;
+
+    background: #10200c;
+
+    border-left: 4px solid #6faf4a;
+
+    border-radius: 6px;
+}
+
+
+.risk-summary h3 {
+    margin-bottom: 8px;
+}
+
+
+.risk-summary p {
+    color: #d0ddca;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   SECURITY FINDINGS
+========================================================= */
+
+.security-findings {
+    margin-top: 30px;
+}
+
+
+.security-findings > h3 {
+    margin-bottom: 15px;
+}
+
+
+.finding-card {
+    margin-bottom: 15px;
+
+    padding: 18px;
+
+    background: #0d180a;
+
+    border: 1px solid #315a20;
+
+    border-radius: 8px;
+}
+
+
+.finding-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+
+.finding-header h4 {
+    margin: 0 0 5px;
+
+    color: #ffffff;
+
+    font-size: 16px;
+}
+
+
+.finding-service {
+    color: #b0c2a7;
+
+    font-size: 13px;
+}
+
+
+.severity-badge {
+    padding: 5px 10px;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   SEVERITY COLORS
+========================================================= */
+
+.severity-critical {
+    background: #4a1111;
+    color: #ff8585;
+}
+
+
+.severity-high {
+    background: #44210c;
+    color: #ffad68;
+}
+
+
+.severity-medium {
+    background: #40340b;
+    color: #ffdc68;
+}
+
+
+.severity-low {
+    background: #183b20;
+    color: #7ee49e;
+}
+
+
+/* =========================================================
+   FINDING INFORMATION
+========================================================= */
+
+.finding-info {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 15px;
+
+    padding: 12px 0;
+
+    border-top: 1px solid #254117;
+    border-bottom: 1px solid #254117;
+}
+
+
+.finding-info strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #9eb194;
+
+    font-size: 12px;
+}
+
+
+.finding-info span {
+    color: #ffffff;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FINDING DESCRIPTION
+========================================================= */
+
+.finding-description {
+    margin-top: 15px;
+}
+
+
+.finding-description h5,
+.finding-recommendation h5 {
+    margin-bottom: 5px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+}
+
+
+.finding-description p,
+.finding-recommendation p {
+    margin: 0;
+
+    color: #c6d4bf;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   RECOMMENDATION
+========================================================= */
+
+.finding-recommendation {
+    margin-top: 15px;
+
+    padding: 12px;
+
+    background: #16280f;
+
+    border-left: 3px solid #6faf4a;
+
+    border-radius: 6px;
+}
+
+
+.finding-recommendation h5 {
+    color: #8fdb68;
+}
+
+
+/* =========================================================
+   NO FINDINGS
+========================================================= */
+
+.no-findings {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    background: #102819;
+
+    border: 1px solid #315a20;
+
+    border-radius: 8px;
+}
+
+
+.no-findings h3 {
+    color: #8fdb68;
+}
+
+
+.no-findings p {
+    color: #b9cbb1;
+}
+
+
+/* =========================================================
+   REPORT ACTIONS
+========================================================= */
+
+.report-actions {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 14px;
+
+    margin-top: 20px;
+}
+
+
+.report-actions .scan-button {
+    width: auto;
+    min-width: 190px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   SECURITY REPORT EMPTY STATE
+========================================================= */
+
+/*
+   Main empty report layout.
+
+   IMPORTANT:
+   Do NOT use a huge gap here.
+*/
+
+.report-empty {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================================================
+   REPORT DOCUMENT ICON
+========================================================= */
+
+.report-empty-icon {
+    width: 42px;
+    min-width: 42px;
+
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 1px;
+
+    background: rgba(111, 175, 74, 0.12);
+
+    border: 1px solid rgba(111, 175, 74, 0.25);
+
+    border-radius: 9px;
+
+    font-size: 23px;
+
+    line-height: 1;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   REPORT TEXT
+========================================================= */
+
+.report-empty-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.report-empty-content h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+.report-empty-content p {
+    margin: 0;
+
+    color: #c8d8c0;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   REPORT HISTORY BUTTON
+========================================================= */
+
+.report-history-button {
+    width: 100%;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 0 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #254117,
+            #3d6929
+        );
+
+    border: 1px solid #4d8134;
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.report-history-button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #3d6929,
+            #548b38
+        );
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   REPORT BUTTON ICON
+========================================================= */
+
+.report-history-button .button-icon {
+    width: 22px;
+    min-width: 22px;
+
+    height: 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+
+    font-size: 16px;
+
+    line-height: 1;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   REPORT BUTTON TEXT
+========================================================= */
+
+.report-history-button .button-text {
+    display: inline-block;
+
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   SCAN HISTORY CARD
+========================================================= */
+
+.history-card {
+    width: 100%;
+    max-width: 1000px;
+
+    margin: 25px auto 60px;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1c3213,
+            #16280f
+        );
+
+    border: 1px solid #315a20;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================================
+   HISTORY LINKS
+========================================================= */
+
+.history-card a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    color: #8fdb68;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition: color 0.2s ease;
+}
+
+
+.history-card a:hover {
+    color: #b9e99b;
+}
+
+
+/* =========================================================
+   HISTORY ICON
+========================================================= */
+
+.history-card .icon {
+    width: 22px;
+    min-width: 22px;
+
+    height: 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+
+    line-height: 1;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   SCANNING OVERLAY
+========================================================= */
+
+.scanning-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(5, 12, 4, 0.60);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+}
+
+
+.scanning-overlay.active {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: all;
+}
+
+
+/* =========================================================
+   SCANNING TEXT
+========================================================= */
+
+.scanning-text {
+    color: #ffffff;
+
+    font-size: 42px;
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    text-align: center;
+
+    text-shadow:
+        0 0 10px rgba(111, 175, 74, 0.8),
+        0 0 25px rgba(111, 175, 74, 0.45);
+
+    animation:
+        scanningPulse 1.2s ease-in-out infinite;
+}
+
+
+@keyframes scanningPulse {
+
+    0% {
+        opacity: 0.55;
+
+        transform: scale(0.98);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform: scale(1.02);
+    }
+
+    100% {
+        opacity: 0.55;
+
+        transform: scale(0.98);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+
+    .nav-links {
+        gap: 18px;
+    }
+
+
+    .nav-links a {
+        font-size: 12px;
+
+        gap: 7px;
+    }
+
+
+    .nav-icon {
+        width: 19px;
+        min-width: 19px;
+
+        height: 19px;
+
+        font-size: 14px;
+    }
+
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    .scan-card {
+        padding: 25px;
+    }
+
+
+    .risk-stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    .severity-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .finding-info {
+        grid-template-columns: 1fr;
+    }
+
+
+    .results-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .report-actions .scan-button {
+        width: 100%;
+    }
+
+
+    .history-card,
+    .results-card {
+        width: 95%;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 15px 5%;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .nav-links {
+        width: 100%;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 10px 18px;
+    }
+
+
+    .hero {
+        padding: 45px 15px 25px;
+    }
+
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+
+    .description {
+        font-size: 14px;
+    }
+
+
+    .scan-card {
+        padding: 22px;
+    }
+
+
+    .severity-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .finding-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .history-card,
+    .results-card {
+        width: 94%;
+
+        padding: 22px;
+    }
+
+
+    /* -----------------------------------------
+       REPORT EMPTY STATE
+    ----------------------------------------- */
+
+    .report-empty {
+        align-items: flex-start;
+
+        gap: 13px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .report-empty-icon {
+        width: 36px;
+        min-width: 36px;
+
+        height: 36px;
+
+        font-size: 21px;
+    }
+
+
+    .report-empty-content {
+        gap: 5px;
+    }
+
+
+    .report-empty-content h2 {
+        font-size: 19px;
+    }
+
+
+    .report-empty-content p {
+        font-size: 13px;
+    }
+
+
+    .report-history-button {
+        min-height: 46px;
+
+        gap: 9px;
+
+        font-size: 14px;
+    }
+
+
+    .report-history-button .button-icon {
+        width: 21px;
+        min-width: 21px;
+
+        height: 21px;
+
+        font-size: 15px;
+    }
+
+
+    .scanning-text {
+        font-size: 26px;
+
+        letter-spacing: 2px;
+    }
+}

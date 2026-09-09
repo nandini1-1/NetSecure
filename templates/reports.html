@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Security Report | NetSecure
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <span>
+            NetSecure
+        </span>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/">
+            New Scan
+        </a>
+
+        <a href="/nmap-commands">
+            Nmap Commands
+        </a>
+
+        <a href="/history">
+            Scan History
+        </a>
+
+        <a href="/reports">
+            Reports
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="container">
+
+
+    <!-- =================================================
+         PAGE HEADER
+    ================================================== -->
+
+    <section class="hero">
+
+        <p class="tag">
+            SECURITY REPORTING
+        </p>
+
+        <h1>
+            Security Report
+        </h1>
+
+
+        {% if scan %}
+
+        <p class="description">
+
+            Detailed information for scan
+            <strong>
+                #{{ scan["id"] }}
+            </strong>.
+
+        </p>
+
+        {% else %}
+
+        <p class="description">
+
+            Select a scan from Scan History
+            to view its security report.
+
+        </p>
+
+        {% endif %}
+
+    </section>
+
+
+
+    {% if scan %}
+
+
+    <!-- =================================================
+         SCAN INFORMATION
+    ================================================== -->
+
+    <section class="scan-card">
+
+        <h2>
+            📊 Scan Information
+        </h2>
+
+
+        <div class="report-details">
+
+
+            <div class="report-item">
+
+                <strong>
+                    Scan ID
+                </strong>
+
+                <span>
+                    #{{ scan["id"] }}
+                </span>
+
+            </div>
+
+
+            <div class="report-item">
+
+                <strong>
+                    Target
+                </strong>
+
+                <span>
+                    {{ scan["target"] }}
+                </span>
+
+            </div>
+
+
+            <div class="report-item">
+
+                <strong>
+                    Scan Time
+                </strong>
+
+                <span>
+                    {{ scan["scan_time"] }}
+                </span>
+
+            </div>
+
+
+            <div class="report-item">
+
+                <strong>
+                    Open Ports
+                </strong>
+
+                <span>
+                    {{ scan["open_ports"] }}
+                </span>
+
+            </div>
+
+
+            <div class="report-item">
+
+                <strong>
+                    Status
+                </strong>
+
+                <span class="status">
+                    {{ scan["status"] }}
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SCAN SUMMARY
+    ================================================== -->
+
+    <section class="scan-card">
+
+        <h2>
+            🔍 Scan Summary
+        </h2>
+
+
+        <p>
+
+            NetSecure completed an Nmap security scan
+            against the target
+
+            <strong>
+                {{ scan["target"] }}
+            </strong>.
+
+        </p>
+
+
+        <p>
+
+            A total of
+
+            <strong>
+                {{ scan["open_ports"] }}
+            </strong>
+
+            open port(s) were detected.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         REPORT ACTIONS
+    ================================================== -->
+
+    <section class="scan-card">
+
+        <h2>
+            📄 Report Actions
+        </h2>
+
+
+        <p class="card-description">
+
+            Download a PDF copy of this security
+            assessment report or return to your scans.
+
+        </p>
+
+
+        <div class="report-actions">
+
+
+            <!-- DOWNLOAD PDF -->
+
+            <a
+                href="/reports/{{ scan['id'] }}/pdf"
+                class="scan-button"
+                target="_blank"
+            >
+
+                📥 Download PDF Report
+
+            </a>
+
+
+            <!-- SCAN HISTORY -->
+
+            <a
+                href="/history"
+                class="scan-button"
+            >
+
+                ← Back to Scan History
+
+            </a>
+
+
+            <!-- NEW SCAN -->
+
+            <a
+                href="/"
+                class="scan-button"
+            >
+
+                🔍 New Scan
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+    {% else %}
+
+
+    <!-- =================================================
+         NO REPORT SELECTED
+    ================================================== -->
+
+    <section class="scan-card">
+
+        <h2>
+            📄 No Report Selected
+        </h2>
+
+
+        <p>
+
+            Please select a scan from
+            Scan History to view its report.
+
+        </p>
+
+
+        <a
+            href="/history"
+            class="scan-button"
+        >
+
+            📋 View Scan History
+
+        </a>
+
+    </section>
+
+
+    {% endif %}
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <p>
+        NetSecure • Network Security Assessment Tool
+    </p>
+
+    <p>
+        Use only on systems you own
+        or have permission to test.
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     SMALL PAGE-SPECIFIC CSS
+====================================================== -->
+
+<style>
+
+    .report-actions {
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+
+        margin-top: 20px;
+
+    }
+
+
+    .report-actions .scan-button {
+
+        display: inline-block;
+
+        text-decoration: none;
+
+    }
+
+
+    .card-description {
+
+        margin-bottom: 10px;
+
+    }
+
+</style>
+
+
+</body>
+
+</html>

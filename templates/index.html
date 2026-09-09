@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        NetSecure | Network Security Scanner
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        NetSecure
+    </div>
+    
+    <div class="nav-links">
+
+        <a href="/">
+            New Scan
+        </a>
+
+        <a href="/nmap-commands">
+            Nmap Commands
+        </a>
+
+        <a href="/history">
+            Scan History
+        </a>
+
+        <a href="/reports">
+            Reports
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="container">
+
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <section class="hero">
+
+        <p class="tag">
+            NETWORK SECURITY TOOL
+        </p>
+
+        <h1>
+            Network Security Scanner
+        </h1>
+
+        <p class="description">
+
+            Perform Nmap network scans through
+            a simple web interface.
+
+        </p>
+
+    </section>
+
+
+    <!-- =================================================
+         SCAN FORM
+    ================================================== -->
+
+    <section class="scan-card">
+
+        <h2>
+            Start a Security Scan
+        </h2>
+
+        <p class="card-description">
+
+            Enter an authorized target
+            and select an Nmap scan type.
+
+        </p>
+
+
+        <form
+            id="scanForm"
+            action="/scan"
+            method="POST"
+        >
+
+
+            <!-- =========================================
+                 TARGET
+            ========================================== -->
+
+            <div class="form-group">
+
+                <label for="target">
+                    Target IP / Hostname
+                </label>
+
+                <input
+                    type="text"
+                    id="target"
+                    name="target"
+                    placeholder="scanme.nmap.org or 127.0.0.1"
+                    required
+                >
+
+                <small>
+                    Example:
+                    scanme.nmap.org
+                </small>
+
+            </div>
+
+
+            <!-- =========================================
+                 SCAN TYPE
+            ========================================== -->
+
+            <div class="form-group">
+
+                <label for="scan_type">
+                    Scan Type
+                </label>
+
+
+                <select
+                    id="scan_type"
+                    name="scan_type"
+                    required
+                >
+
+                    <option value="tcp_connect">
+                        TCP Connect Scan
+                    </option>
+
+                    <option value="syn">
+                        SYN (Stealth) Scan
+                    </option>
+
+                    <option value="udp">
+                        UDP Scan
+                    </option>
+
+                    <option value="ping">
+                        Ping Scan
+                    </option>
+
+                    <option value="version">
+                        Version Detection
+                    </option>
+
+                    <option value="os">
+                        OS Detection
+                    </option>
+
+                    <option value="aggressive">
+                        Aggressive Scan
+                    </option>
+
+                    <option value="service">
+                        Service Discovery
+                    </option>
+
+                    <option value="fast">
+                        Fast Scan
+                    </option>
+
+                    <option value="full_tcp">
+                        Full TCP Port Scan
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- =========================================
+                 START SCAN BUTTON
+            ========================================== -->
+
+            <button
+                type="submit"
+                class="scan-button"
+            >
+
+                🔍
+                Start Scan
+
+            </button>
+
+
+        </form>
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     SCANNING OVERLAY
+====================================================== -->
+
+<div
+    id="scanningOverlay"
+    class="scanning-overlay"
+>
+
+    <div class="scanning-text">
+
+        SCANNINGGGGG.......
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <p>
+        NetSecure • Network Security Assessment Tool
+    </p>
+
+    <p>
+        Use only on systems you own
+        or have permission to test.
+    </p>
+
+</footer>
+
+
+<!-- =====================================================
+     SCAN OVERLAY SCRIPT
+====================================================== -->
+
+<script>
+
+    const scanForm =
+        document.getElementById("scanForm");
+
+    const scanningOverlay =
+        document.getElementById("scanningOverlay");
+
+
+    /* =====================================================
+       SHOW OVERLAY WHEN SCAN STARTS
+    ===================================================== */
+
+    scanForm.addEventListener(
+        "submit",
+        function () {
+
+            scanningOverlay.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       HIDE OVERLAY WHEN RETURNING TO PAGE
+       
+       Fixes the browser Back button / bfcache issue.
+    ===================================================== */
+
+    window.addEventListener(
+        "pageshow",
+        function () {
+
+            scanningOverlay.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       EXTRA SAFETY ON NORMAL PAGE LOAD
+    ===================================================== */
+
+    window.addEventListener(
+        "load",
+        function () {
+
+            scanningOverlay.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>
